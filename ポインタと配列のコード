@@ -1,0 +1,60 @@
+#include<stdio.h>
+
+int MinMax(int*,int*,int*);
+
+int main(void) {
+
+	int i,x,y;
+	int list[11];
+
+	printf("数字を十個まで入力してください。もし途中で止める場合は-1を入力してください\n");
+	for (i = 0; i < 10; i++) {
+
+		printf("%d番目の入力:", i + 1);
+		scanf_s("%d", list+i);
+		printf("入力[%d]は%dです\n", i + 1, list[i]);
+
+		if (list[i] == (-1)) {
+			MinMax(list, &x, &y);
+			printf("最大値は: %d\n最小値は: %d", x, y);
+			return 0;
+		}
+	}
+
+	list[10] = -1;
+	MinMax(list, &x, &y);
+	printf("最大値は: %d\n最小値は: %d", x, y);
+	return 0;
+
+}
+
+int MinMax(int* list, int* max, int* min) {
+
+	int i = 0;
+
+	while (list[i]!=-1) {
+
+		if (i==0) {
+
+			*max = list[i];
+			*min = list[i];
+
+		}
+		else {
+
+			if (*max <= list[i]) {
+
+				*max = list[i];
+
+			}
+
+			if (*min >= list[i]) {
+
+				*min = list[i];
+			}
+		}
+		i++;
+
+	}
+	return 0;
+}
